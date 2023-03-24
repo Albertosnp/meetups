@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAllMeetups, setAllMeetups } from '../stores/meetups.slice';
+import { useDispatch } from 'react-redux';
+import { setAllMeetups } from '../stores/meetups.slice';
 
 export const useFetch = (options) => {
   const dispatch = useDispatch();
-  const meetups = useSelector(selectAllMeetups);
 
   useEffect(() => {
     fetch(options.url)
@@ -12,9 +11,5 @@ export const useFetch = (options) => {
       .then((json) => {
         dispatch(setAllMeetups(json));
       });
-  }, [options.url]);
-
-  return {
-    meetups,
-  };
+  }, [options.url, dispatch]);
 };

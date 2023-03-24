@@ -1,6 +1,7 @@
 import Layout from 'components/layout/Layout';
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useFetch } from 'util-hooks/useFetch';
 import {
   FAVORITES_PAGE,
   NEW_MEETUP_PAGE,
@@ -12,6 +13,8 @@ const FavoritesPage = lazy(() => import('../pages/Favorites'));
 const NewMeetupsPage = lazy(() => import('../pages/NewMeetup'));
 
 export const AppRoutes = () => {
+  useFetch({ url: '/data.json' });
+
   return (
     <Suspense fallback={<></>}>
       <BrowserRouter>

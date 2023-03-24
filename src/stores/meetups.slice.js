@@ -7,6 +7,14 @@ export const slice = createSlice({
     favorites: [],
   },
   reducers: {
+    addNewMeetup: (state, action) => {
+      const id = `m${state.meetups.length + 1}`;
+      const newMeetup = {
+        ...action.payload,
+        id,
+      };
+      state.meetups = [...state.meetups, newMeetup];
+    },
     setAllMeetups: (state, action) => {
       state.meetups = action.payload;
     },
@@ -28,7 +36,7 @@ export const slice = createSlice({
   },
 });
 
-export const { setAllMeetups, setToggleFavorite } = slice.actions;
+export const { setAllMeetups, setToggleFavorite, addNewMeetup } = slice.actions;
 
 export const selectAllMeetups = (state) => state.meetups.meetups;
 export const selectFavorites = (state) => state.meetups.favorites;

@@ -1,15 +1,12 @@
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { setToggleFavorite } from '../stores/meetups.slice';
-import { useFetch } from '../util-hooks/useFetch';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAllMeetups, setToggleFavorite } from '../stores/meetups.slice';
 import MeetupItem from '../components/meetups/MeetupItem';
 import classes from './../components/meetups/MeetupList.module.css';
 
 export default function AllMeetupsPage() {
   const dispatch = useDispatch();
-  const { meetups } = useFetch({
-    url: '/data.json',
-  });
+  const meetups = useSelector(selectAllMeetups);
 
   const handleFavoriteClick = useCallback((id) => {
     dispatch(setToggleFavorite(id));
