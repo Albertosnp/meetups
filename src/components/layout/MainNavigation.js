@@ -1,4 +1,6 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { selectFavorites } from '../../stores/meetups.slice';
 
 import { useHeaderScroll } from '../../util-hooks/useHeaderScroll';
 import {
@@ -9,8 +11,10 @@ import {
 
 import classes from './MainNavigation.module.css';
 
-export default function MainNavigation({ setPage }) {
+export default function MainNavigation() {
+  const favorites = useSelector(selectFavorites);
   const { scrollDirection } = useHeaderScroll();
+
   const extraClass = scrollDirection === 'down' ? classes.sticky : '';
 
   return (
@@ -30,7 +34,7 @@ export default function MainNavigation({ setPage }) {
           <li>
             <Link to={FAVORITES_PAGE}>
               My Favorites
-              <span className={classes.badge}>{0}</span>
+              <span className={classes.badge}>{favorites?.length ?? 0}</span>
             </Link>
           </li>
         </ul>
