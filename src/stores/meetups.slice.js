@@ -11,13 +11,18 @@ export const slice = createSlice({
       state.meetups = action.payload;
     },
     setToggleFavorite: (state, action) => {
-      const existFavorite = state.favorites.some((id) => id === action.payload);
+      const existFavorite = state.favorites.find(
+        (item) => item.id === action.payload
+      );
       if (existFavorite) {
         state.favorites = state.favorites.filter(
-          (meetup) => meetup !== action.payload
+          ({ id }) => id !== action.payload
         );
       } else {
-        state.favorites = [...state.favorites, action.payload];
+        const favoriteMeetup = state.meetups.filter(
+          ({ id }) => id === action.payload
+        );
+        state.favorites = [...state.favorites, favoriteMeetup].flat();
       }
     },
   },
