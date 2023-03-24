@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { useHeaderScroll } from '../../util-hooks/useHeaderScroll';
 import {
   ALL_MEETUP_PAGE,
@@ -20,21 +22,16 @@ export default function MainNavigation({ setPage }) {
       <nav>
         <ul>
           <li>
-            <a href="#" onClick={() => setPage(ALL_MEETUP_PAGE)}>
-              All Meetups
-            </a>
-          </li>
-
-          <li>
-            <a href="#" onClick={() => setPage(NEW_MEETUP_PAGE)}>
-              Add New Meetup
-            </a>
+            <Link to={ALL_MEETUP_PAGE}>All Meetups</Link>
           </li>
           <li>
-            <a href="#" onClick={() => setPage(FAVORITES_PAGE)}>
+            <Link to={NEW_MEETUP_PAGE}>Add New Meetup</Link>
+          </li>
+          <li>
+            <Link to={FAVORITES_PAGE}>
               My Favorites
               <span className={classes.badge}>{0}</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
