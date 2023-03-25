@@ -18,23 +18,26 @@ export default function MainNavigation() {
   const extraClass = scrollDirection === 'down' ? classes.sticky : '';
 
   return (
-    <header
-      className={`${classes.header} ${extraClass}`}
-      data-test="navigation-header"
-    >
-      <div className={classes.logo}>React Meetups</div>
+    <header className={`${classes.header} ${extraClass}`}>
+      <div className={classes.logo} data-test="navigation-header">
+        React Meetups
+      </div>
       <nav>
         <ul>
           <li>
             <Link to={ALL_MEETUP_PAGE}>All Meetups</Link>
           </li>
           <li>
-            <Link to={NEW_MEETUP_PAGE}>Add New Meetup</Link>
+            <Link to={NEW_MEETUP_PAGE} data-cy="new-meetup-link">
+              Add New Meetup
+            </Link>
           </li>
           <li>
-            <Link to={FAVORITES_PAGE}>
+            <Link to={FAVORITES_PAGE} data-cy="favourite-link">
               My Favorites
-              <span className={classes.badge}>{favorites?.length ?? 0}</span>
+              <span data-cy="number-favourites" className={classes.badge}>
+                {favorites?.length ?? 0}
+              </span>
             </Link>
           </li>
         </ul>

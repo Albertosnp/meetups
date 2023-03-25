@@ -26,7 +26,9 @@ function MeetupItem({
           <p>{description}</p>
         </div>
         <div className={classes.actions}>
-          <button onClick={handleClick}>Add to favorites</button>
+          <button onClick={handleClick} data-cy="add-favourite">
+            Add to favorites
+          </button>
         </div>
       </Card>
     </li>
