@@ -1,17 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setAllMeetups } from '../stores/meetups.slice';
 
 export const useFetch = (options) => {
-  const [data, setData] = useState(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetch(options.url)
       .then((response) => response.json())
       .then((json) => {
-        setData(json);
+        dispatch(setAllMeetups(json));
       });
-  }, [options.url]);
-
-  return {
-    data,
-  };
+  }, [options.url, dispatch]);
 };

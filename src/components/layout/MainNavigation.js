@@ -1,29 +1,44 @@
-import { ALL_MEETUP_PAGE, FAVORITES_PAGE, NEW_MEETUP_PAGE } from "./../../utils/constants";
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { selectFavorites } from '../../stores/meetups.slice';
 
-import classes from "./MainNavigation.module.css";
+import { useHeaderScroll } from '../../util-hooks/useHeaderScroll';
+import {
+  ALL_MEETUP_PAGE,
+  FAVORITES_PAGE,
+  NEW_MEETUP_PAGE,
+} from './../../utils/constants';
 
-export default function MainNavigation({ setPage }) {
+import classes from './MainNavigation.module.css';
+
+export default function MainNavigation() {
+  const favorites = useSelector(selectFavorites);
+  const { scrollDirection } = useHeaderScroll();
+
+  const extraClass = scrollDirection === 'down' ? classes.sticky : '';
+
   return (
-    <header className={classes.header} data-test="navigation-header">
-      <div className={classes.logo}>React Meetups</div>
+    <header className={`${classes.header} ${extraClass}`}>
+      <div className={classes.logo} data-test="navigation-header">
+        React Meetups
+      </div>
       <nav>
         <ul>
           <li>
-            <a href="#" onClick={() => setPage(ALL_MEETUP_PAGE)}>
-              All Meetups
-            </a>
+            <Link to={ALL_MEETUP_PAGE}>All Meetups</Link>
           </li>
-
           <li>
-            <a href="#" onClick={() => setPage(NEW_MEETUP_PAGE)}>
+            <Link to={NEW_MEETUP_PAGE} data-cy="new-meetup-link">
               Add New Meetup
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" onClick={() => setPage(FAVORITES_PAGE)}>
+            <Link to={FAVORITES_PAGE} data-cy="favourite-link">
               My Favorites
-              <span className={classes.badge}>{0}</span>
-            </a>
+              <span data-cy="number-favourites" className={classes.badge}>
+                {favorites?.length ?? 0}
+              </span>
+            </Link>
           </li>
         </ul>
       </nav>
