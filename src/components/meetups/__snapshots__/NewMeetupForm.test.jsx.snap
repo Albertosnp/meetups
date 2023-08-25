@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewMeetupForm Should match snapshot with full props 1`] = `
+<div>
+  <code
+    aria-label="Card"
+    name="Card"
+    props="{}"
+  >
+    <form
+      class="form"
+    >
+      <div
+        class="control"
+      >
+        <label
+          for="title"
+        >
+          Meetup Title
+        </label>
+        <input
+          id="title"
+          name="title"
+          required=""
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="control"
+      >
+        <label
+          for="image"
+        >
+          Meetup Image
+        </label>
+        <input
+          id="image"
+          name="image"
+          required=""
+          type="url"
+          value=""
+        />
+      </div>
+      <div
+        class="control"
+      >
+        <label
+          for="address"
+        >
+          Address
+        </label>
+        <input
+          id="address"
+          name="address"
+          required=""
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="control"
+      >
+        <label
+          for="description"
+        >
+          Description
+        </label>
+        <textarea
+          id="description"
+          name="description"
+          required=""
+          rows="5"
+        />
+      </div>
+      <div
+        class="actions"
+      >
+        <button>
+          Add Meetup
+        </button>
+      </div>
+    </form>
+  </code>
+</div>
+`;

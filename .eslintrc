@@ -1,0 +1,57 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "plugins": ["react", "react-hooks", "simple-import-sort", "prettier"],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2023
+  },
+  "settings": {
+    "react": {
+      "version": "16.5.2"
+    }
+  },
+  "rules": {
+    "arrow-body-style": ["warn", "as-needed"],
+    "arrow-parens": ["warn", "as-needed"],
+    "comma-dangle": ["warn", "never"],
+    "no-case-declarations": "off",
+    "no-control-regex": 0,
+    "no-mixed-spaces-and-tabs": "off",
+    "no-redeclare": "off",
+    "no-unused-vars": "off",
+    "no-useless-escape": "off",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "react/jsx-no-undef": "off",
+    "react/no-render-return-value": "warn",
+    "react/no-string-refs": "warn",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "simple-import-sort/sort": [
+      "warn",
+      {
+        "groups": [
+          // External packages
+          ["^react", "^@?\\w"],
+          // Redux
+          ["./actionTypes", "../actions", "../reducers"],
+          // hooks
+          ["./hooks"],
+          // utils
+          ["./utils"],
+          // components
+          ["./components"],
+          // Components and other stuff
+          ["\\./[A-Z]", "^\\."]
+        ]
+      }
+    ]
+  }
+}

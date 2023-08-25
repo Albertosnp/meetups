@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Meetup-Item Card Should match snapshot with full props 1`] = `
+<div>
+  <li
+    class="item"
+    data-test="meet-up-item"
+  >
+    <div
+      class="card"
+    >
+      <div
+        class="image"
+      >
+        <img
+          alt="new meetup"
+          src="https://via.placeholder.com/150"
+        />
+      </div>
+      <div
+        class="content"
+      >
+        <h3>
+          new meetup
+        </h3>
+        <address>
+          new meetup adress
+        </address>
+        <p>
+          this is a new meetup
+        </p>
+      </div>
+      <div
+        class="actions"
+      >
+        <button
+          data-cy="add-favourite"
+        >
+          Add to favorites
+        </button>
+      </div>
+    </div>
+  </li>
+</div>
+`;
