@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addNewMeetup } from 'stores/meetups.slice';
+import { addNewMeetup } from '../../stores/meetups.slice';
 import Card from '../ui/Card';
 import classes from './NewMeetupForm.module.css';
 
@@ -8,7 +8,7 @@ const INITIAL_FORM_STATE = {
   title: '',
   image: '',
   address: '',
-  description: '',
+  description: ''
 };
 
 export default function NewMeetupForm() {
@@ -22,9 +22,10 @@ export default function NewMeetupForm() {
   }
 
   const handleChange = ({ target }) => {
-    setFormValues((prev) => ({
+    const { value, name } = target;
+    setFormValues(prev => ({
       ...prev,
-      [target.name]: target.value,
+      [name]: value
     }));
   };
 

@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 import { selectFavorites } from '../../stores/meetups.slice';
 
 import { useHeaderScroll } from '../../util-hooks/useHeaderScroll';
-import {
-  ALL_MEETUP_PAGE,
-  FAVORITES_PAGE,
-  NEW_MEETUP_PAGE,
-} from './../../utils/constants';
+import { ALL_MEETUP_PAGE, FAVORITES_PAGE, NEW_MEETUP_PAGE } from './../../utils/constants';
 
 import classes from './MainNavigation.module.css';
 
