@@ -1,30 +1,36 @@
 /* eslint-disable testing-library/no-debugging-utils */
 import { fireEvent, render, screen, configure } from '@testing-library/react';
-import { shallow } from 'enzyme';
+import ReactDOM from 'react-dom';
 import MeetupItem from './MeetupItem';
 
 configure({ testIdAttribute: 'data-cy' });
 
-test('<MeetupItem/> renders without crashing', () => {
-  const wrapper = shallow(<MeetupItem />);
-  expect(wrapper.exists()).toBe(true);
-});
-
 describe('Meetup-Item Card', () => {
-  const meetup = {
+  const defaultProps = {
     image: 'https://via.placeholder.com/150',
     title: 'new meetup',
     address: 'new meetup adress',
     description: 'this is a new meetup',
-    handleFavoriteClick: jest.fn(),
+    handleFavoriteClick: jest.fn()
   };
 
-  it('should render', () => {
-    render(<MeetupItem {...meetup} />);
+  const getComponent = props => <MeetupItem {...props} />;
+
+  const setup = (props = defaultProps) => render(getComponent(props));
+
+  it('Should render without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(getComponent(), div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
+
+  it('Should match snapshot with full props', () => {
+    const { container } = setup();
+    expect(container).toMatchSnapshot();
   });
 
   it('should has properties indicated', () => {
-    render(<MeetupItem {...meetup} />);
+    setup();
 
     screen.getByText('new meetup');
     screen.getByText('new meetup adress');
@@ -33,8 +39,7 @@ describe('Meetup-Item Card', () => {
 
   it('clicking the button calls event like handle once', () => {
     const mockHandle = jest.fn();
-
-    render(<MeetupItem {...meetup} handleFavoriteClick={mockHandle} />);
+    setup({ ...defaultProps, handleFavoriteClick: mockHandle });
 
     const button = screen.getByTestId('add-favourite');
     fireEvent.click(button);
